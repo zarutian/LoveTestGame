@@ -31,12 +31,13 @@ end
 function love.draw()
   love.graphics.setBackgroundColor(0,0,0)
   love.graphics.clear()
-  local prevLineWidht = love.graphics.getLineWidth()
+  local prevLineWidth = love.graphics.getLineWidth()
   -- draw score
   love.graphics.setNewFont(20)
   love.graphics.setColor(240, 0, 240) -- magenta but not at highest brightness
   love.graphics.print("Score: " .. tostring(GameState.score), 650, 25)
   -- draw falling objects
+  love.graphics.setLineWidth(3)
   for i in ipairs(GameState.fallingObjects) do
     local obj = GameState.fallingObjects[i]
     love.graphics.setColor(obj.color)
