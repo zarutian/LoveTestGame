@@ -1,13 +1,13 @@
 
 GameState = {}
 
-function GameState.makeNewFallingObject (x, y, size, color)
+function GameState.makeNewFallingObject (x, y, size, color, fallingVelocity)
   local obj = {}
   obj.x = x
   obj.y = y
   obj.size = size or 10
   obj.color = color or {0, 240, 240}
-  obj.fallingVelocity = 5
+  obj.fallingVelocity = fallingVelocity or 5
   obj.fallingRate = 0.25
   table.insert(GameState.fallingObjects, obj)
 end
@@ -38,7 +38,7 @@ function love.draw()
   love.graphics.print("Score: " .. tostring(GameState.score), 650, 25)
   love.graphics.setLineWidth(3)
   -- draw 
-  love.graphics.line(GameState.catcher.maxx, 0, GameState.catcher.maxx, 600)
+  love.graphics.line(GameState.catcher.maxx + 1, 0, GameState.catcher.maxx + 1, 600)
   -- draw falling objects
   for i in ipairs(GameState.fallingObjects) do
     local obj = GameState.fallingObjects[i]
@@ -88,7 +88,7 @@ function love.update(deltatime)
       local x = math.random(GameState.catcher.minx, (GameState.catcher.maxx - size))
       local y = 10
       local color = { math.random(60, 240), math.random(60, 240), math.random(60, 240) }
-      GameState.makeNewFallingObject(x, y, size, color)
+      GameState.makeNewFallingObject(x, y, size, color, math.random(1, 10))
       GameState.untilNextGeneratedObject = GameState.generateObjectInterval
     else
       GameState.untilNextGeneratedObject = GameState.untilNextGeneratedObject - deltatime
