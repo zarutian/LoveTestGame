@@ -68,7 +68,7 @@ function love.update(deltatime)
       local obj = GameState.fallingObjects[i]
       if math.modf(math.fmod(GameState.deltaAccumulator, obj.fallingRate)) == 0 then
         obj.y = obj.y + obj.fallingVelocity
-        local middlex = obj.x - (obj.size / 2)
+        local middlex = obj.x + (obj.size / 2)
         if obj.y > GameState.catcher.y and middlex > GameState.catcher.x and middlex < (GameState.catcher.x + GameState.catcher.width) then
           GameState.score = GameState.score + obj.size
         end
