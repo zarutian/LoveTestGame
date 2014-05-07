@@ -31,6 +31,7 @@ end
 function love.draw()
   love.graphics.setBackgroundColor(0,0,0)
   love.graphics.clear()
+  local prevLineWidht = love.graphics.getLineWidth()
   -- draw score
   love.graphics.setNewFont(20)
   love.graphics.setColor(240, 0, 240) -- magenta but not at highest brightness
@@ -51,6 +52,7 @@ function love.draw()
     love.graphics.setNewFont(60)
     love.graphics.print("Game is paused!", 150, 250)
   end
+  love.graphics.setLineWidth(prevLineWidth)
 end
 
 function love.update(deltatime)
